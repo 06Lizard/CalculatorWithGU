@@ -106,16 +106,21 @@ namespace WinFormsApp1
         {
             InsertAtCurrentPosition("(");
         }
-        private void InsertAtCurrentPosition(string text)
+        private int InsertAtCurrentPosition(string text)
         {
             // Insert the text at the current editing position
             displayExpresion = displayExpresion.Insert(editingPosition, text);
 
+            // Calculate the number of positions inserted
+            int positionsInserted = text.Length;
+
             // Increment the editing position
-            editingPosition++;
+            editingPosition += positionsInserted;
 
             // Update the display immediately
             UpdateDisplay(displayExpresion);
+
+            return positionsInserted;
         }
         // Event handler for when the left arrow key is pressed
         private void btn_ArrowL_Click(object sender, EventArgs e)
@@ -176,7 +181,11 @@ namespace WinFormsApp1
         }
         private void btn_PowerOfTwo_Click(object sender, EventArgs e)
         {
-            InsertAtCurrentPosition("^2");
+            // Insert ^2
+            int positionsInserted = InsertAtCurrentPosition("^2");
+
+            // Move forward 2 positions
+            editingPosition += positionsInserted;
         }
         private void btn_PowOfY_Click(object sender, EventArgs e)
         {
@@ -193,14 +202,10 @@ namespace WinFormsApp1
             // Update the display
             UpdateDisplay(displayExpresion);
         }
-        private void btn_ANS_Click(object sender, EventArgs e) //not finished
+        private void btn_ANS_Click(object sender, EventArgs e)
         {
-            // will later be able to add the previus Result in to the displayExpresion string
-            // Add ANS
+            // Insert ANS
             InsertAtCurrentPosition(ANS);
-
-            // Update the display
-            UpdateDisplay(displayExpresion);
         }
 
         //This is the function to have the program start calculating everything
