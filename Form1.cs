@@ -20,6 +20,110 @@ namespace WinFormsApp1
 
             // Subscribe to the AnswerChanged event
             ExpressionEvaluator.AnswerChanged += AnwserDisplay_TextChanged;
+
+            // Subscribe to the KeyDown event for the form
+            this.KeyDown += Form1_KeyDown;
+
+            // Set KeyPreview to true in the Form_Load event
+            this.Load += Form1_Load;
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Set KeyPreview to true
+            this.KeyPreview = true;
+        }
+        // keyboard functions for the buttons
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Check for keyboard shortcuts
+            switch (e.KeyCode)
+            {
+                case Keys.D0:
+                case Keys.NumPad0:
+                    btn_0.PerformClick();
+                    break;
+                case Keys.D1:
+                case Keys.NumPad1:
+                    btn_1.PerformClick();
+                    break;
+                case Keys.D2:
+                case Keys.NumPad2:
+                    btn_2.PerformClick();
+                    break;
+                case Keys.D3:
+                case Keys.NumPad3:
+                    btn_3.PerformClick();
+                    break;
+                case Keys.D4:
+                case Keys.NumPad4:
+                    btn_4.PerformClick();
+                    break;
+                case Keys.D5:
+                case Keys.NumPad5:
+                    btn_5.PerformClick();
+                    break;
+                case Keys.D6:
+                case Keys.NumPad6:
+                    btn_6.PerformClick();
+                    break;
+                case Keys.D7:
+                case Keys.NumPad7:
+                    btn_7.PerformClick();
+                    break;
+                case Keys.D8:
+                case Keys.NumPad8:
+                    btn_8.PerformClick();
+                    break;
+                case Keys.D9:
+                case Keys.NumPad9:
+                    btn_9.PerformClick();
+                    break;
+                case Keys.Oemplus: // Plus key
+                    btn_plus.PerformClick();
+                    break;
+                case Keys.OemMinus: // Minus key
+                    btn_minus.PerformClick();
+                    break;
+                case Keys.Escape: // Escape key
+                case Keys.C: // C key
+                    btn_Clear.PerformClick();
+                    break;
+                case Keys.Right: // RightArrow
+                    btn_ArrowR.PerformClick();
+                    break;
+                case Keys.Left: // LeftArrow
+                    btn_ArrowL.PerformClick();
+                    break;
+                case Keys.Enter: // Enter key
+                    btn_Equal.PerformClick();
+                    break;
+                case Keys.M: // M key
+                    btn_Multiplication.PerformClick();
+                    break;
+                case Keys.D: // D key
+                    btn_Division.PerformClick();
+                    break;
+                case Keys.S: // S key
+                    btn_Sqrt2.PerformClick();
+                    break;
+                case Keys.P: // P key
+                    btn_PowOfY.PerformClick();
+                    break;
+                case Keys.Q: // Q key
+                    btn_PowerOfTwo.PerformClick();
+                    break;
+                case Keys.A: // A key
+                    btn_ANS.PerformClick();
+                    break;
+                case Keys.Decimal:
+                case (Keys)188: // Key code for comma (,)
+                    btn_dot.PerformClick();
+                    break;
+                case Keys.Back:
+                    btn_backspace.PerformClick();
+                    break;
+                    // Add more cases for other keys as needed
+            }
         }
 
         // Method to update the display with the current input expression
