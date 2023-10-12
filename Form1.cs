@@ -126,7 +126,6 @@ namespace WinFormsApp1
                 // Add more cases for other keys as needed
 
                 case Keys.Enter: // curently dons't work for some reason, it aparently writes the latest pressed button instead 
-                case Keys.Space:
                     btn_Equal.PerformClick();
                     break;
             }
