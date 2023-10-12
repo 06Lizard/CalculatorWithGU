@@ -188,10 +188,13 @@ namespace WinFormsApp1
         private void btn_PowerOfTwo_Click(object sender, EventArgs e)
         {
             // Insert ^2
-            int positionsInserted = InsertAtCurrentPosition("^2");
+            InsertAtCurrentPosition("^2");
 
-            // Move forward 2 positions
-            editingPosition += positionsInserted;
+            // Move forward 2 positions, but ensure editingPosition does not exceed the string length
+            editingPosition = Math.Min(editingPosition + 2, displayExpresion.Length);
+
+            // Update the display
+            UpdateDisplay(displayExpresion);
         }
         private void btn_PowOfY_Click(object sender, EventArgs e)
         {
