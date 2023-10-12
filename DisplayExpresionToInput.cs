@@ -50,7 +50,7 @@ class displayExpresionToInput
     {
         // Extract the base number to the left of '^'
         int leftIndex = index - 1;
-        while (leftIndex >= 0 && char.IsDigit(input[leftIndex]))
+        while (leftIndex >= 0 && (char.IsDigit(input[leftIndex]) || input[leftIndex] == '.'))
         {
             leftIndex--;
         }

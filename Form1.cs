@@ -157,14 +157,14 @@ namespace WinFormsApp1
             // Check if there's something to delete
             if (editingPosition > 0)
             {
-                // Decrement the editing position
-                editingPosition--;
-
                 // Convert the displayExpresion to a StringBuilder for mutable operations
                 var sb = new StringBuilder(displayExpresion);
 
                 // Remove the character to the left of the editing position
-                sb.Remove(editingPosition, 1);
+                sb.Remove(editingPosition - 1, 1);
+
+                // Update the editing position
+                editingPosition--;
 
                 // Update the displayExpresion with the modified StringBuilder
                 displayExpresion = sb.ToString();
@@ -172,7 +172,13 @@ namespace WinFormsApp1
                 // Update the display
                 UpdateDisplay(displayExpresion);
             }
+            else
+            {
+                // Optionally, you might want to handle the case when the editing position is already at the beginning.
+                // For example, do nothing or wrap around to the end.
+            }
         }
+
         private void btn_Clear_Click(object sender, EventArgs e)
         {
             displayExpresion = "";
