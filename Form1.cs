@@ -114,14 +114,19 @@ namespace WinFormsApp1
                     break;
                 case Keys.Decimal:
                 case (Keys)188: // Key code for comma (,)
+                case Keys.OemPeriod:
                     btn_dot.PerformClick();
                     break;
                 case Keys.Back:
                     btn_backspace.PerformClick();
                     break;
+                case Keys.Delete:
+                    btn_Delite.PerformClick();
+                    break;
                 // Add more cases for other keys as needed
 
                 case Keys.Enter: // curently dons't work for some reason, it aparently writes the latest pressed button instead 
+                case Keys.Space:
                     btn_Equal.PerformClick();
                     break;
             }
@@ -344,6 +349,11 @@ namespace WinFormsApp1
 
             // Display the expression and answer
             AnwserDisplay.Text = $"{displayExpresion} = {currentAnswer}";
+        }
+
+        private void btn_Delete_Click(object sender, EventArgs e)
+        {
+            //remove the charekter infront of the editing position and then update the display, do not change the editiong position so next time the delite button is pressed the charekter that previusly was 2 steps to the right of the editing position will be the thing delited, if there's nothing to delite then do nothing
         }
     }
 }
