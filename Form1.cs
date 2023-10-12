@@ -226,11 +226,14 @@ namespace WinFormsApp1
         private void AnwserDisplay_TextChanged(object sender, EventArgs e)
         {
             // This is where the answers will be displayed
-            AnwserDisplay.Text = ExpressionEvaluator.CurrentAnswer;
-            if (!(AnwserDisplay.Text.Contains("Error") || AnwserDisplay.Text.Contains("NaN")))
+            string currentAnswer = ExpressionEvaluator.CurrentAnswer;
+            if (!(currentAnswer.Contains("Error") || currentAnswer.Contains("NaN")))
             {
-                ANS = ExpressionEvaluator.CurrentAnswer;
+                ANS = currentAnswer;
             }
+
+            // Display the expression and answer
+            AnwserDisplay.Text = $"{displayExpresion} = {currentAnswer}";
         }
     }
 }
