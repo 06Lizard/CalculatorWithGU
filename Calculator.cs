@@ -43,6 +43,12 @@ class ExpressionEvaluator
             else
             {
                 CurrentAnswer = result.ToString();
+                // Check if CurrentAnswer contains a comma
+                if (CurrentAnswer.Contains(","))
+                {
+                    // Replace all commas with dots
+                    CurrentAnswer = CurrentAnswer.Replace(",", ".");
+                }
             }
 
             // Trigger the AnswerChanged event
