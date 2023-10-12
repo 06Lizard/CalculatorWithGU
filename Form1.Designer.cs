@@ -51,6 +51,11 @@
             this.btn_0 = new System.Windows.Forms.Button();
             this.Display = new System.Windows.Forms.TextBox();
             this.btn_backspace = new System.Windows.Forms.Button();
+            this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_ArrowL = new System.Windows.Forms.Button();
+            this.btn_ArrowR = new System.Windows.Forms.Button();
+            this.AnwserDisplay = new System.Windows.Forms.TextBox();
+            this.btn_ANS = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_1
@@ -205,7 +210,7 @@
             this.btn_Sqrt2.Name = "btn_Sqrt2";
             this.btn_Sqrt2.Size = new System.Drawing.Size(75, 71);
             this.btn_Sqrt2.TabIndex = 12;
-            this.btn_Sqrt2.Text = "Sqrt()";
+            this.btn_Sqrt2.Text = "√()";
             this.btn_Sqrt2.UseVisualStyleBackColor = false;
             this.btn_Sqrt2.Click += new System.EventHandler(this.btn_Sqrt2_Click);
             // 
@@ -307,13 +312,10 @@
             // 
             // Display
             // 
-            this.Display.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.Display.Location = new System.Drawing.Point(7, 12);
-            this.Display.Multiline = true;
             this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(398, 71);
-            this.Display.TabIndex = 21;
-            this.Display.TextChanged += new System.EventHandler(this.Display_TextChanged);
+            this.Display.Size = new System.Drawing.Size(480, 23);
+            this.Display.TabIndex = 26;
             // 
             // btn_backspace
             // 
@@ -327,12 +329,73 @@
             this.btn_backspace.UseVisualStyleBackColor = false;
             this.btn_backspace.Click += new System.EventHandler(this.btn_backspace_Click);
             // 
+            // btn_Clear
+            // 
+            this.btn_Clear.BackColor = System.Drawing.SystemColors.WindowText;
+            this.btn_Clear.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Clear.Location = new System.Drawing.Point(412, 243);
+            this.btn_Clear.Name = "btn_Clear";
+            this.btn_Clear.Size = new System.Drawing.Size(75, 71);
+            this.btn_Clear.TabIndex = 23;
+            this.btn_Clear.Text = "C";
+            this.btn_Clear.UseVisualStyleBackColor = false;
+            this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
+            // 
+            // btn_ArrowL
+            // 
+            this.btn_ArrowL.BackColor = System.Drawing.SystemColors.WindowText;
+            this.btn_ArrowL.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_ArrowL.Location = new System.Drawing.Point(412, 166);
+            this.btn_ArrowL.Name = "btn_ArrowL";
+            this.btn_ArrowL.Size = new System.Drawing.Size(75, 71);
+            this.btn_ArrowL.TabIndex = 24;
+            this.btn_ArrowL.Text = "<-";
+            this.btn_ArrowL.UseVisualStyleBackColor = false;
+            this.btn_ArrowL.Click += new System.EventHandler(this.btn_ArrowL_Click);
+            // 
+            // btn_ArrowR
+            // 
+            this.btn_ArrowR.BackColor = System.Drawing.SystemColors.WindowText;
+            this.btn_ArrowR.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_ArrowR.Location = new System.Drawing.Point(413, 89);
+            this.btn_ArrowR.Name = "btn_ArrowR";
+            this.btn_ArrowR.Size = new System.Drawing.Size(75, 71);
+            this.btn_ArrowR.TabIndex = 25;
+            this.btn_ArrowR.Text = "->";
+            this.btn_ArrowR.UseVisualStyleBackColor = false;
+            this.btn_ArrowR.Click += new System.EventHandler(this.btn_ArrowR_Click);
+            // 
+            // AnwserDisplay
+            // 
+            this.AnwserDisplay.Location = new System.Drawing.Point(7, 41);
+            this.AnwserDisplay.Name = "AnwserDisplay";
+            this.AnwserDisplay.Size = new System.Drawing.Size(480, 23);
+            this.AnwserDisplay.TabIndex = 27;
+            this.AnwserDisplay.TextChanged += new System.EventHandler(this.AnwserDisplay_TextChanged);
+            // 
+            // btn_ANS
+            // 
+            this.btn_ANS.BackColor = System.Drawing.SystemColors.WindowText;
+            this.btn_ANS.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_ANS.Location = new System.Drawing.Point(413, 324);
+            this.btn_ANS.Name = "btn_ANS";
+            this.btn_ANS.Size = new System.Drawing.Size(75, 71);
+            this.btn_ANS.TabIndex = 28;
+            this.btn_ANS.Text = "ANS";
+            this.btn_ANS.UseVisualStyleBackColor = false;
+            this.btn_ANS.Click += new System.EventHandler(this.btn_ANS_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Desktop;
-            this.ClientSize = new System.Drawing.Size(412, 479);
+            this.ClientSize = new System.Drawing.Size(500, 479);
+            this.Controls.Add(this.btn_ANS);
+            this.Controls.Add(this.AnwserDisplay);
+            this.Controls.Add(this.btn_ArrowR);
+            this.Controls.Add(this.btn_ArrowL);
+            this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.btn_backspace);
             this.Controls.Add(this.Display);
             this.Controls.Add(this.btn_0);
@@ -388,5 +451,10 @@
         private Button btn_0;
         private TextBox Display;
         private Button btn_backspace;
+        private Button btn_Clear;
+        private Button btn_ArrowL;
+        private Button btn_ArrowR;
+        private TextBox AnwserDisplay;
+        private Button btn_ANS;
     }
 }
