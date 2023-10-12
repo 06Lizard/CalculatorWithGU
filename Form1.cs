@@ -94,9 +94,6 @@ namespace WinFormsApp1
                 case Keys.Left: // LeftArrow
                     btn_ArrowL.PerformClick();
                     break;
-                case Keys.Enter: // Enter key
-                    btn_Equal.PerformClick();
-                    break;
                 case Keys.M: // M key
                     btn_Multiplication.PerformClick();
                     break;
@@ -122,7 +119,11 @@ namespace WinFormsApp1
                 case Keys.Back:
                     btn_backspace.PerformClick();
                     break;
-                    // Add more cases for other keys as needed
+                // Add more cases for other keys as needed
+
+                case Keys.Enter: // curently dons't work for some reason, it aparently writes the latest pressed button instead 
+                    btn_Equal.PerformClick();
+                    break;
             }
         }
 
