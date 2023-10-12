@@ -337,6 +337,7 @@
             this.Display.Location = new System.Drawing.Point(8, 16);
             this.Display.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Display.Name = "Display";
+            this.Display.ReadOnly = true;
             this.Display.Size = new System.Drawing.Size(548, 27);
             this.Display.TabIndex = 26;
             // 
@@ -397,6 +398,7 @@
             this.AnwserDisplay.Location = new System.Drawing.Point(8, 55);
             this.AnwserDisplay.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AnwserDisplay.Name = "AnwserDisplay";
+            this.AnwserDisplay.ReadOnly = true;
             this.AnwserDisplay.Size = new System.Drawing.Size(548, 27);
             this.AnwserDisplay.TabIndex = 27;
             this.AnwserDisplay.TextChanged += new System.EventHandler(this.AnwserDisplay_TextChanged);

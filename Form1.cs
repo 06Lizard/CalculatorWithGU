@@ -351,7 +351,7 @@ namespace WinFormsApp1
             AnwserDisplay.Text = $"{displayExpresion} = {currentAnswer}";
         }
 
-        private void btn_Delete_Click(object sender, EventArgs e)
+        private void btn_Delite_Click(object sender, EventArgs e)
         {
             //remove the charekter infront of the editing position and then update the display, do not change the editiong position so next time the delite button is pressed the charekter that previusly was 2 steps to the right of the editing position will be the thing delited, if there's nothing to delite then do nothing
         }
