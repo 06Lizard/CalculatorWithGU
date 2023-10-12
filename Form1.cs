@@ -171,6 +171,7 @@ namespace WinFormsApp1
         private void btn_Clear_Click(object sender, EventArgs e)
         {
             displayExpresion = "";
+            editingPosition = 0; // Reset editing position
             UpdateDisplay(displayExpresion);
         }
         private void btn_PowerOfTwo_Click(object sender, EventArgs e)
