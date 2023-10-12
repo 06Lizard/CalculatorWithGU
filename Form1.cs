@@ -157,14 +157,14 @@ namespace WinFormsApp1
             // Check if there's something to delete
             if (editingPosition > 0)
             {
+                // Decrement the editing position
+                editingPosition--;
+
                 // Convert the displayExpresion to a StringBuilder for mutable operations
                 var sb = new StringBuilder(displayExpresion);
 
                 // Remove the character to the left of the editing position
-                sb.Remove(editingPosition - 1, 1);
-
-                // Decrement the editing position
-                editingPosition--;
+                sb.Remove(editingPosition, 1);
 
                 // Update the displayExpresion with the modified StringBuilder
                 displayExpresion = sb.ToString();
