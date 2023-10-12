@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-
-class displayExpresionToInput
+﻿class displayExpresionToInput
 {
     public static string Interpret(string input)
     {
@@ -62,7 +59,7 @@ class displayExpresionToInput
     {
         // Extract the exponent to the right of '^'
         int rightIndex = index + 1;
-        while (rightIndex < input.Length && char.IsDigit(input[rightIndex]))
+        while (rightIndex < input.Length && (char.IsDigit(input[rightIndex]) || input[rightIndex] == '.'))
         {
             rightIndex++;
         }
