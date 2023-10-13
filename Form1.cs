@@ -13,8 +13,7 @@ namespace WinFormsApp1
         // Declare a variable to keep track of ANS
         private string ANS = "";
 
-        //Form1 constructor
-        public Form1()
+        public Form1() //Form1 constructor
         {
             InitializeComponent();
 
@@ -31,107 +30,9 @@ namespace WinFormsApp1
         {
             this.KeyPreview = true;
         }
-        // Keybinds for the butons on the calculator
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Check for keyboard shortcuts
-            switch (e.KeyCode)
-            {
-                case Keys.D0: // key 0
-                case Keys.NumPad0: // num key 0
-                    btn_0.PerformClick();
-                    break;
-                case Keys.D1: // key 1
-                case Keys.NumPad1: // num key 1
-                    btn_1.PerformClick();
-                    break;
-                case Keys.D2: // key 2
-                case Keys.NumPad2: // num key 2
-                    btn_2.PerformClick();
-                    break;
-                case Keys.D3: // key 3
-                case Keys.NumPad3: // num key 3
-                    btn_3.PerformClick();
-                    break;
-                case Keys.D4: // key 4
-                case Keys.NumPad4: // num key 4
-                    btn_4.PerformClick();
-                    break;
-                case Keys.D5: // key 5
-                case Keys.NumPad5: // num key 5
-                    btn_5.PerformClick();
-                    break;
-                case Keys.D6: // key 6
-                case Keys.NumPad6: // num key 6
-                    btn_6.PerformClick();
-                    break;
-                case Keys.D7: // key 7
-                case Keys.NumPad7: // num key 7
-                    btn_7.PerformClick();
-                    break;
-                case Keys.D8: // key 8
-                case Keys.NumPad8: // num key 8
-                    btn_8.PerformClick();
-                    break;
-                case Keys.D9: // key 9
-                case Keys.NumPad9: // num key 9
-                    btn_9.PerformClick();
-                    break;
-                case Keys.Oemplus: // Plus key
-                    btn_plus.PerformClick();
-                    break;
-                case Keys.OemMinus: // Minus key
-                    btn_minus.PerformClick();
-                    break;
-                case Keys.Escape: // Escape key
-                case Keys.C: // C key
-                    btn_Clear.PerformClick();
-                    break;
-                case Keys.Right: // RightArrow
-                    btn_ArrowR.PerformClick();
-                    break;
-                case Keys.Left: // LeftArrow
-                    btn_ArrowL.PerformClick();
-                    break;
-                case Keys.M: // M key
-                    btn_Multiplication.PerformClick();
-                    break;
-                case Keys.D: // D key
-                    btn_Division.PerformClick();
-                    break;
-                case Keys.S: // S key
-                    btn_Sqrt2.PerformClick();
-                    break;
-                case Keys.P: // P key
-                    btn_PowOfY.PerformClick();
-                    break;
-                case Keys.Q: // Q key
-                    btn_PowerOfTwo.PerformClick();
-                    break;
-                case Keys.A: // A key
-                    btn_ANS.PerformClick();
-                    break;
-                case Keys.Decimal: // for numpad
-                case (Keys)188: // Key code for comma (,)
-                case Keys.OemPeriod: // for dot .
-                    btn_dot.PerformClick();
-                    break;
-                case Keys.Back: // backspace
-                    btn_backspace.PerformClick();
-                    break;
-                case Keys.Delete: // delite
-                    btn_Delite.PerformClick();
-                    break;
-                case Keys.Enter: // Enter
-                case Keys.Tab: // Tab
-                case Keys.Space: // Space 
-                    btn_Equal.PerformClick();
-                    break;
-            }
-        }
 
-        // Method to update the display with the current input expression
-        private void UpdateDisplay(string text)
+        //Display related
+        private void UpdateDisplay(string text) // This is the Update function for the display that the user types in their input too
         {
             // Insert an underscore at the editing position
             var displayTextWithUnderscore = new StringBuilder(text);
@@ -140,8 +41,36 @@ namespace WinFormsApp1
             // Update the display
             Display.Text = displayTextWithUnderscore.ToString();
         }
+        private void AnwserDisplay_TextChanged(object sender, EventArgs e) // This is the function for the display the anwser is displayed in
+        {
+            // This is where the answers will be displayed
+            string currentAnswer = ExpressionEvaluator.CurrentAnswer;
+            if (!(currentAnswer.Contains("Error") || currentAnswer.Contains("NaN")))
+            {
+                ANS = currentAnswer;
+            }
 
+            // Display the expression and answer
+            AnwserDisplay.Text = $"{displayExpresion} = {currentAnswer}";
+        }
+        private int InsertAtCurrentPosition(string text) // Function to handle where the user is editing their expresion
+        {
+            // Insert the text at the current editing position
+            displayExpresion = displayExpresion.Insert(editingPosition, text);
 
+            // Calculate the number of positions inserted
+            int positionsInserted = text.Length;
+
+            // Increment the editing position
+            editingPosition += positionsInserted;
+
+            // Update the display immediately
+            UpdateDisplay(displayExpresion);
+
+            return positionsInserted;
+        }
+
+        // Bellow is what every button on the calculator will do when clicked
         private void btn_0_Click(object sender, EventArgs e)
         {
             InsertAtCurrentPosition("0");
@@ -202,31 +131,22 @@ namespace WinFormsApp1
         {
             InsertAtCurrentPosition(")");
         }
-        private void btn_dot_Click(object sender, EventArgs e)
-        {
-            InsertAtCurrentPosition(".");
-        }
         private void btn_ParantheseL_Click(object sender, EventArgs e)
         {
             InsertAtCurrentPosition("(");
         }
-        private int InsertAtCurrentPosition(string text)
+        private void btn_dot_Click(object sender, EventArgs e)
         {
-            // Insert the text at the current editing position
-            displayExpresion = displayExpresion.Insert(editingPosition, text);
-
-            // Calculate the number of positions inserted
-            int positionsInserted = text.Length;
-
-            // Increment the editing position
-            editingPosition += positionsInserted;
-
-            // Update the display immediately
-            UpdateDisplay(displayExpresion);
-
-            return positionsInserted;
+            InsertAtCurrentPosition(".");
         }
-        // Event handler for when the left arrow key is pressed
+        private void btn_ArrowR_Click(object sender, EventArgs e)
+        {
+            // Move the editing position to the right
+            editingPosition = (editingPosition + 1) % (displayExpresion.Length + 1);
+
+            // Update the display
+            UpdateDisplay(displayExpresion);
+        }
         private void btn_ArrowL_Click(object sender, EventArgs e)
         {
             // Move the editing position to the left
@@ -242,51 +162,6 @@ namespace WinFormsApp1
             }
 
             // Update the display
-            UpdateDisplay(displayExpresion);
-        }
-        // Event handler for when the right arrow key is pressed
-        private void btn_ArrowR_Click(object sender, EventArgs e)
-        {
-            // Move the editing position to the right
-            editingPosition = (editingPosition + 1) % (displayExpresion.Length + 1);
-
-            // Update the display
-            UpdateDisplay(displayExpresion);
-        }
-
-
-        // Event handler for when the backspace key is pressed
-        private void btn_backspace_Click(object sender, EventArgs e)
-        {
-            // Check if there's something to delete
-            if (editingPosition > 0)
-            {
-                // Convert the displayExpresion to a StringBuilder for mutable operations
-                var sb = new StringBuilder(displayExpresion);
-
-                // Remove the character to the left of the editing position
-                sb.Remove(editingPosition - 1, 1);
-
-                // Update the editing position
-                editingPosition--;
-
-                // Update the displayExpresion with the modified StringBuilder
-                displayExpresion = sb.ToString();
-
-                // Update the display
-                UpdateDisplay(displayExpresion);
-            }
-            else
-            {
-                // Optionally, you might want to handle the case when the editing position is already at the beginning.
-                // For example, do nothing or wrap around to the end.
-            }
-        }
-
-        private void btn_Clear_Click(object sender, EventArgs e)
-        {
-            displayExpresion = "";
-            editingPosition = 0; // Reset editing position
             UpdateDisplay(displayExpresion);
         }
         private void btn_PowerOfTwo_Click(object sender, EventArgs e)
@@ -320,9 +195,45 @@ namespace WinFormsApp1
             // Insert ANS
             InsertAtCurrentPosition(ANS);
         }
+        private void btn_backspace_Click(object sender, EventArgs e)
+        {
+            // Check if there's something to delete
+            if (editingPosition > 0)
+            {
+                // Convert the displayExpresion to a StringBuilder for mutable operations
+                var sb = new StringBuilder(displayExpresion);
 
-        // This is the function to have the program start calculating everything
-        private void btn_Equal_Click(object sender, EventArgs e)
+                // Remove the character to the left of the editing position
+                sb.Remove(editingPosition - 1, 1);
+
+                // Update the editing position
+                editingPosition--;
+
+                // Update the displayExpresion with the modified StringBuilder
+                displayExpresion = sb.ToString();
+
+                // Update the display
+                UpdateDisplay(displayExpresion);
+            }
+        }
+        private void btn_Delite_Click(object sender, EventArgs e)
+        {
+            if (editingPosition < displayExpresion.Length)
+            {
+                //Make editing position one to the right
+                editingPosition++;
+
+                //Perform backspace
+                btn_backspace.PerformClick();
+            }
+        }
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            displayExpresion = "";
+            editingPosition = 0; // Reset editing position
+            UpdateDisplay(displayExpresion);
+        }
+        private void btn_Equal_Click(object sender, EventArgs e) // This is the function to have the program start calculating everything
         {
             // Instantiate Calculator class
             Calculator calc = new Calculator();
@@ -333,25 +244,101 @@ namespace WinFormsApp1
             // Assuming you want to update the display immediately after calculation
             AnwserDisplay_TextChanged(null, EventArgs.Empty);
         }
-
-
-        // Event handler for AnswerChanged
-        private void AnwserDisplay_TextChanged(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e) // Keybinds for the butons on the calculator
         {
-            // This is where the answers will be displayed
-            string currentAnswer = ExpressionEvaluator.CurrentAnswer;
-            if (!(currentAnswer.Contains("Error") || currentAnswer.Contains("NaN")))
+            // Check for keyboard keybinds
+            switch (e.KeyCode)
             {
-                ANS = currentAnswer;
+                case Keys.D0: // key 0
+                case Keys.NumPad0: // num key 0
+                    btn_0.PerformClick();
+                    break;
+                case Keys.D1: // key 1
+                case Keys.NumPad1: // num key 1
+                    btn_1.PerformClick();
+                    break;
+                case Keys.D2: // key 2
+                case Keys.NumPad2: // num key 2
+                    btn_2.PerformClick();
+                    break;
+                case Keys.D3: // key 3
+                case Keys.NumPad3: // num key 3
+                    btn_3.PerformClick();
+                    break;
+                case Keys.D4: // key 4
+                case Keys.NumPad4: // num key 4
+                    btn_4.PerformClick();
+                    break;
+                case Keys.D5: // key 5
+                case Keys.NumPad5: // num key 5
+                    btn_5.PerformClick();
+                    break;
+                case Keys.D6: // key 6
+                case Keys.NumPad6: // num key 6
+                    btn_6.PerformClick();
+                    break;
+                case Keys.D7: // key 7
+                case Keys.NumPad7: // num key 7
+                    btn_7.PerformClick();
+                    break;
+                case Keys.D8: // key 8
+                case Keys.NumPad8: // num key 8
+                    btn_8.PerformClick();
+                    break;
+                case Keys.D9: // key 9
+                case Keys.NumPad9: // num key 9
+                    btn_9.PerformClick();
+                    break;
+                case Keys.Oemplus: // Plus key
+                    btn_plus.PerformClick();
+                    break;
+                case Keys.OemMinus: // Minus key
+                    btn_minus.PerformClick();
+                    break;
+                case Keys.Escape: // Escape key
+                    btn_Clear.PerformClick();
+                    break;
+                case Keys.Right: // RightArrow
+                    btn_ArrowR.PerformClick();
+                    break;
+                case Keys.Left: // LeftArrow
+                    btn_ArrowL.PerformClick();
+                    break;
+                case Keys.M: // M key
+                    btn_Multiplication.PerformClick();
+                    break;
+                case Keys.D: // D key
+                    btn_Division.PerformClick();
+                    break;
+                case Keys.S: // S key
+                    btn_Sqrt2.PerformClick();
+                    break;
+                case Keys.P: // P key
+                    btn_PowOfY.PerformClick();
+                    break;
+                case Keys.Q: // Q key
+                    btn_PowerOfTwo.PerformClick();
+                    break;
+                case Keys.A: // A key
+                    btn_ANS.PerformClick();
+                    break;
+                case Keys.Decimal: // for numpad
+                case (Keys)188: // Key code for comma (,)
+                case Keys.OemPeriod: // for dot .
+                    btn_dot.PerformClick();
+                    break;
+                case Keys.Back: // backspace
+                    btn_backspace.PerformClick();
+                    break;
+                case Keys.Delete: // delite
+                    btn_Delite.PerformClick();
+                    break;
+                case Keys.Enter: // Enter
+                case Keys.Tab: // Tab
+                case Keys.Space: // Space 
+                    btn_Equal.PerformClick();
+                    break;
             }
-
-            // Display the expression and answer
-            AnwserDisplay.Text = $"{displayExpresion} = {currentAnswer}";
-        }
-
-        private void btn_Delite_Click(object sender, EventArgs e)
-        {
-            // Remove the charekter infront of the editing position and then update the display, do not change the editiong position so next time the delite button is pressed the charekter that previusly was 2 steps to the right of the editing position will be the thing delited, if there's nothing to delite then do nothing
         }
     }
 }
