@@ -29,53 +29,52 @@ namespace WinFormsApp1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Set KeyPreview to true
             this.KeyPreview = true;
         }
-        // keyboard functions for the buttons
+        // Keybinds for the butons on the calculator
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             // Check for keyboard shortcuts
             switch (e.KeyCode)
             {
-                case Keys.D0:
-                case Keys.NumPad0:
+                case Keys.D0: // key 0
+                case Keys.NumPad0: // num key 0
                     btn_0.PerformClick();
                     break;
-                case Keys.D1:
-                case Keys.NumPad1:
+                case Keys.D1: // key 1
+                case Keys.NumPad1: // num key 1
                     btn_1.PerformClick();
                     break;
-                case Keys.D2:
-                case Keys.NumPad2:
+                case Keys.D2: // key 2
+                case Keys.NumPad2: // num key 2
                     btn_2.PerformClick();
                     break;
-                case Keys.D3:
-                case Keys.NumPad3:
+                case Keys.D3: // key 3
+                case Keys.NumPad3: // num key 3
                     btn_3.PerformClick();
                     break;
-                case Keys.D4:
-                case Keys.NumPad4:
+                case Keys.D4: // key 4
+                case Keys.NumPad4: // num key 4
                     btn_4.PerformClick();
                     break;
-                case Keys.D5:
-                case Keys.NumPad5:
+                case Keys.D5: // key 5
+                case Keys.NumPad5: // num key 5
                     btn_5.PerformClick();
                     break;
-                case Keys.D6:
-                case Keys.NumPad6:
+                case Keys.D6: // key 6
+                case Keys.NumPad6: // num key 6
                     btn_6.PerformClick();
                     break;
-                case Keys.D7:
-                case Keys.NumPad7:
+                case Keys.D7: // key 7
+                case Keys.NumPad7: // num key 7
                     btn_7.PerformClick();
                     break;
-                case Keys.D8:
-                case Keys.NumPad8:
+                case Keys.D8: // key 8
+                case Keys.NumPad8: // num key 8
                     btn_8.PerformClick();
                     break;
-                case Keys.D9:
-                case Keys.NumPad9:
+                case Keys.D9: // key 9
+                case Keys.NumPad9: // num key 9
                     btn_9.PerformClick();
                     break;
                 case Keys.Oemplus: // Plus key
@@ -112,20 +111,18 @@ namespace WinFormsApp1
                 case Keys.A: // A key
                     btn_ANS.PerformClick();
                     break;
-                case Keys.Decimal:
+                case Keys.Decimal: // for numpad
                 case (Keys)188: // Key code for comma (,)
-                case Keys.OemPeriod:
+                case Keys.OemPeriod: // for dot .
                     btn_dot.PerformClick();
                     break;
-                case Keys.Back:
+                case Keys.Back: // backspace
                     btn_backspace.PerformClick();
                     break;
-                case Keys.Delete:
+                case Keys.Delete: // delite
                     btn_Delite.PerformClick();
                     break;
-                // Add more cases for other keys as needed
-
-                case Keys.Enter: // curently dons't work for some reason, it aparently writes the latest pressed button instead 
+                case Keys.Enter: // Enter
                     btn_Equal.PerformClick();
                     break;
             }
@@ -322,7 +319,7 @@ namespace WinFormsApp1
             InsertAtCurrentPosition(ANS);
         }
 
-        //This is the function to have the program start calculating everything
+        // This is the function to have the program start calculating everything
         private void btn_Equal_Click(object sender, EventArgs e)
         {
             // Instantiate Calculator class
@@ -352,7 +349,7 @@ namespace WinFormsApp1
 
         private void btn_Delite_Click(object sender, EventArgs e)
         {
-            //remove the charekter infront of the editing position and then update the display, do not change the editiong position so next time the delite button is pressed the charekter that previusly was 2 steps to the right of the editing position will be the thing delited, if there's nothing to delite then do nothing
+            // Remove the charekter infront of the editing position and then update the display, do not change the editiong position so next time the delite button is pressed the charekter that previusly was 2 steps to the right of the editing position will be the thing delited, if there's nothing to delite then do nothing
         }
     }
 }
