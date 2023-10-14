@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace WinFormsApp1
 {
@@ -246,6 +247,7 @@ namespace WinFormsApp1
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e) // Keybinds for the butons on the calculator
         {
+            Debug.WriteLine($"Key Code: {e.KeyCode}");
             // Check for keyboard keybinds
             switch (e.KeyCode)
             {
@@ -279,6 +281,11 @@ namespace WinFormsApp1
                     break;
                 case Keys.D7: // key 7
                 case Keys.NumPad7: // num key 7
+                    if (e.Shift) // and shift down
+                    {
+                        btn_Division.PerformClick();
+                        break;
+                    }
                     btn_7.PerformClick();
                     break;
                 case Keys.D8: // key 8
@@ -304,16 +311,17 @@ namespace WinFormsApp1
                 case Keys.Left: // LeftArrow
                     btn_ArrowL.PerformClick();
                     break;
-                case Keys.M: // M key
+                case Keys.Oem2: // '*' charekter
+                case Keys.Multiply: // num '*' key
                     btn_Multiplication.PerformClick();
                     break;
-                case Keys.D: // D key
-                    btn_Division.PerformClick();
-                    break;
+                /*case Keys.D: // D key
+                    btn_Division.PerformClick(); // in D7 now 
+                    break;*/
                 case Keys.S: // S key
                     btn_Sqrt2.PerformClick();
                     break;
-                case Keys.P: // P key
+                case Keys.Oem1: // '^' chaarekter
                     btn_PowOfY.PerformClick();
                     break;
                 case Keys.Q: // Q key
@@ -334,7 +342,6 @@ namespace WinFormsApp1
                     btn_Delite.PerformClick();
                     break;
                 case Keys.Enter: // Enter
-                case Keys.Tab: // Tab
                 case Keys.Space: // Space 
                     btn_Equal.PerformClick();
                     break;
