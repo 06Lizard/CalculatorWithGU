@@ -247,7 +247,6 @@ namespace WinFormsApp1
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e) // Keybinds for the butons on the calculator
         {
-            Debug.WriteLine($"Key Code: {e.KeyCode}");
             // Check for keyboard keybinds
             switch (e.KeyCode)
             {
