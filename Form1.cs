@@ -341,7 +341,6 @@ namespace WinFormsApp1
                     btn_Delite.PerformClick();
                     break;
                 case Keys.Enter: // Enter
-                case Keys.Space: // Space 
                     btn_Equal.PerformClick();
                     break;
             }
