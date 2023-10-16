@@ -289,10 +289,20 @@ namespace WinFormsApp1
                     break;
                 case Keys.D8: // key 8
                 case Keys.NumPad8: // num key 8
+                    if (e.Shift) // and shift down
+                    {
+                        btn_ParantheseL.PerformClick();
+                        break;
+                    }
                     btn_8.PerformClick();
                     break;
                 case Keys.D9: // key 9
                 case Keys.NumPad9: // num key 9
+                    if (e.Shift) // and shift down
+                    {
+                        btn_ParantheseR.PerformClick();
+                        break;
+                    }
                     btn_9.PerformClick();
                     break;
                 case Keys.Oemplus: // Plus key
