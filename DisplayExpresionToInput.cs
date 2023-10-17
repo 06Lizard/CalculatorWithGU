@@ -1,4 +1,5 @@
-﻿class displayExpresionToInput
+﻿using NCalc;
+class displayExpresionToInput
 {
     public static string Interpret(string input)
     {
@@ -11,6 +12,57 @@
     private static string TransformSymbols(string input)
     {
         string modifiedInput = input;
+
+        // Handle parentheses first
+        while (modifiedInput.Contains('('))
+        {
+            // Find the index of the first '(' from right to left
+            int openParenIndex = modifiedInput.LastIndexOf('(');
+
+            // Find the corresponding ')'
+            int closeParenIndex = modifiedInput.IndexOf(')', openParenIndex);
+
+            if (openParenIndex != -1)
+            {
+                if (closeParenIndex != -1)
+                {
+                    // Extract the expression inside parentheses
+                    string expressionInsideParentheses = modifiedInput.Substring(openParenIndex + 1, closeParenIndex - openParenIndex - 1);
+                    string resultInsideParentheses = expressionInsideParentheses;
+                    try
+                    {
+                        // Calculate the expression inside parentheses using ExpressionEvaluator
+                        Expression expression = new Expression(expressionInsideParentheses);
+                        resultInsideParentheses = expression.Evaluate().ToString();
+                    }
+                    catch
+                    {
+                        resultInsideParentheses = expressionInsideParentheses;
+                    }
+                    // Replace the expression inside parentheses with the result
+                    modifiedInput = modifiedInput.Remove(openParenIndex, closeParenIndex - openParenIndex + 1).Insert(openParenIndex, resultInsideParentheses);
+                }
+                else
+                {
+                    // Assume all the code to the right of '(' is inside the parentheses
+                    string expressionInsideParentheses = modifiedInput.Substring(openParenIndex + 1);
+                    string resultInsideParentheses = expressionInsideParentheses;
+                    try
+                    {
+                        // Calculate the expression inside parentheses using ExpressionEvaluator
+                        Expression expression = new Expression(expressionInsideParentheses);
+                        resultInsideParentheses = expression.Evaluate().ToString();
+                    }
+                    catch
+                    {
+                        resultInsideParentheses = expressionInsideParentheses;
+                    }
+                    // Replace the expression inside parentheses with the result
+                    modifiedInput = modifiedInput.Remove(openParenIndex).Insert(openParenIndex, resultInsideParentheses);
+                }
+            }
+        }
+
         while (modifiedInput.Contains('^') || modifiedInput.Contains('√') || modifiedInput.Contains('V'))
         {
             if (modifiedInput.Contains('^'))
@@ -31,8 +83,8 @@
                 // Find the position of the square root symbol or 'V' in the modified input
                 int index = modifiedInput.IndexOfAny(new[] { '√', 'V' });
 
-                // Extract the expression inside the square root
-                string expression = ExtractParenthesizedExpression(modifiedInput, index);
+                // Use ExtractRightOperand for the square root
+                string expression = ExtractRightOperand(modifiedInput, index);
 
                 // Replace the square root symbol or 'V' with Sqrt(expression)
                 string replacement = $"Sqrt({expression})";
@@ -66,19 +118,5 @@
 
         return input.Substring(index + 1, rightIndex - index - 1);
     }
-
-    private static string ExtractParenthesizedExpression(string input, int index)
-    {
-        // Extract the expression inside parentheses after '√' or 'V'
-        int start = index + 1;
-        int end = input.IndexOf(')', start);
-
-        if (end != -1)
-        {
-            return input.Substring(start, end - start);
-        }
-
-        // Handle the case where the ')' is missing
-        throw new ArgumentException($"Mismatched parentheses after '{input[index]}'");
-    }
 }
+
